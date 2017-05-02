@@ -4,7 +4,13 @@ LIBFT = libft/libft.a
 OBJ = lem_in.o \
 			get_next_line/get_next_line.o \
 			srcs/read_map.o \
-			srcs/find_roots.o
+			srcs/find_roots.o \
+			srcs/combine_datasets.o \
+			srcs/go_ants.o \
+			srcs/utils_read_map.o \
+			srcs/utils_read_map2.o \
+			srcs/stack_operations.o \
+			srcs/roots_operations.o
 
 .phony: all clean fclean re
 

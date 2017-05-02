@@ -1,5 +1,4 @@
 130
-r 34 34
 r-o 34 34
 r-o-o 34 34
 ##start
@@ -7,6 +6,5 @@ o-o 234 234
 o-o-m 45 35
 ##end
 o-m 234 234
-r-o-o-m
-r-o-o-o-m
+o-o-r-o
 r-o-o-m
