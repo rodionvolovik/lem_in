@@ -20,6 +20,7 @@ t_root	*append_root(t_root *head, t_stk *stk)
 	ptr = head;
 	new = (t_root*)malloc(sizeof(t_root));
 	new->stk = stk;
+	new->used = 0;
 	new->next = NULL;
 	if (!head)
 		head = new;

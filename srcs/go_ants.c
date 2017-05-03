@@ -36,6 +36,7 @@ void	makemove(t_set *set, int *i, t_house *house, int j)
 	{
 		if (ptr->stk->next->locked == 0)
 		{
+			ptr->used = 1;
 			ptr->stk->next->locked = ++(*i);
 			ft_putstr("\x1b[1;34mL");
 			ft_putnbr(ptr->stk->next->locked);
@@ -57,11 +58,11 @@ void	recway(t_stk **stk, t_house *house)
 		(*stk)->locked = 0;
 		(*house).end++;
 	}
-	else if ((*stk)->next && (*stk)->locked)
+	else if ((*stk)->next && (*stk)->locked && !(*stk)->next->locked)
 	{
 		(*stk)->next->locked = (*stk)->locked;
 		ft_putstr("\x1b[1;34mL");
-		ft_putnbr((*stk)->next->locked);
+		ft_putnbr((*stk)->locked);
 		ft_putstr("-");
 		ft_putstr(roomname((*stk)->next->id, *house));
 		ft_putstr(" \x1b[0m");
@@ -80,7 +81,8 @@ void	moveall(t_set *set, t_house *house)
 		root = ptr->root;
 		while (root)
 		{
-			recway(&root->stk, house);
+			if (root->used == 1)
+				recway(&root->stk, house);
 			root = root->next;
 		}
 		ptr = ptr->next;
@@ -110,6 +112,10 @@ void	go_ants(t_house house)
 				set = set->next;
 			makemove(set, &i, &house, 1);
 		}
-		printf("\n");
+		ft_putnbr(house.end);
+		ft_putnbr(house.ants);
+		ft_putnbr(house.start);
+		if (house.end <= house.ants)
+			ft_putendl("");
 	}
 }

@@ -68,32 +68,28 @@ int		get_line(char **saved, char *buf, char **line)
 int		get_next_line(const int fd, char **line)
 {
 	static t_gnl	*list;
-	t_gnl			*current;
+	t_gnl			*cur;
 	char			*buf;
-	int				read_num;
 
 	if (!(buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))) || fd < 0
 		|| read(fd, buf, 0) || !line)
 		return (-1);
 	ft_memset(buf, '\0', BUFF_SIZE + 1);
-	current = pick_file(&list, fd);
-	if ((get_line(&(current->saved), buf, line)))
+	if ((cur = pick_file(&list, fd)) && (get_line(&(cur->saved), buf, line)))
 	{
 		free(buf);
 		return (1);
 	}
-	while ((read_num = read(fd, buf, BUFF_SIZE)))
-		if ((get_line(&(current->saved), buf, line)))
+	while ((read(fd, buf, BUFF_SIZE)))
+		if ((get_line(&(cur->saved), buf, line)))
 		{
 			free(buf);
 			return (1);
 		}
-	if (*current->saved)
+	if (*cur->saved && (*line = ft_strdup(cur->saved)))
 	{
-		*line = ft_strdup(current->saved);
-		ft_strdel(&(current->saved));
 		free(buf);
 		return (1);
 	}
-	return (read_num == -1 ? -1 : 0);
+	return (0);
 }

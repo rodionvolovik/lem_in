@@ -6,7 +6,7 @@
 /*   By: rvolovik <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 22:14:21 by rvolovik          #+#    #+#             */
-/*   Updated: 2017/05/02 22:15:27 by rvolovik         ###   ########.fr       */
+/*   Updated: 2017/05/03 11:51:04 by rvolovik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_room
 typedef struct		s_root
 {
 	int				len;
+	int				used;
 	t_stk			*stk;
 	struct s_root	*next;
 }					t_root;
